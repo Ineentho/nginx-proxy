@@ -128,7 +128,6 @@ server {
 {{ else }}
 
 server {
-	underscores_in_headers on;
 	{{ if $.Env.DEFAULT_HOST }}
 	  {{ if eq $.Env.DEFAULT_HOST $host }}
 	    listen 80 default_server;
