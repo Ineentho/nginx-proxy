@@ -147,6 +147,9 @@ server {
 	location / {
 		proxy_pass {{ $proto }}://{{ $host }};
 		proxy_pass_request_headers on;
+		proxy_set_header Test-Header sten;
+		proxy_set_header Header_Test sten2;
+		proxy_set_header access_token $access_token
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
 		auth_basic	"Restricted {{ $host }}";
 		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
