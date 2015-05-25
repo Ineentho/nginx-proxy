@@ -147,6 +147,7 @@ server {
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
 		auth_basic	"Restricted {{ $host }}";
 		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
+		proxy_pass_request_headers on;
 		{{ end }}
 	}
 }
