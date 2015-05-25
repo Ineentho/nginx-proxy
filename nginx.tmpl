@@ -116,9 +116,9 @@ server {
 	{{ end }}
 
 	location / {
+		underscores_in_headers on;
 		proxy_pass {{ $proto }}://{{ $host }};
 		proxy_pass_request_headers on;
-		underscores_in_headers on;
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
 		auth_basic	"Restricted {{ $host }}";
 		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
@@ -128,6 +128,7 @@ server {
 {{ else }}
 
 server {
+	underscores_in_headers on;
 	{{ if $.Env.DEFAULT_HOST }}
 	  {{ if eq $.Env.DEFAULT_HOST $host }}
 	    listen 80 default_server;
@@ -144,9 +145,9 @@ server {
 	{{ end }}
 
 	location / {
+		underscores_in_headers on;
 		proxy_pass {{ $proto }}://{{ $host }};
 		proxy_pass_request_headers on;
-		underscores_in_headers on;
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
 		auth_basic	"Restricted {{ $host }}";
 		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
