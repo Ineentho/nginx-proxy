@@ -118,6 +118,7 @@ server {
 	location / {
 		proxy_pass {{ $proto }}://{{ $host }};
 		proxy_pass_request_headers on;
+		underscores_in_headers on;
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
 		auth_basic	"Restricted {{ $host }}";
 		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
@@ -145,6 +146,7 @@ server {
 	location / {
 		proxy_pass {{ $proto }}://{{ $host }};
 		proxy_pass_request_headers on;
+		underscores_in_headers on;
 		{{ if (exists (printf "/etc/nginx/htpasswd/%s" $host)) }}
 		auth_basic	"Restricted {{ $host }}";
 		auth_basic_user_file	{{ (printf "/etc/nginx/htpasswd/%s" $host) }};
